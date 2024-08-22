@@ -13,7 +13,7 @@ module.exports = {
       accent_color: "#FFD700", /* Highlight or accent color */
       orange_color: "#FF4500", /* Button color */
       secondary_color: "#5C5C5C", /* Secondary text color */
-      offwhite_color: "#E5E5E5" /* Border color for elements */
+      offwhite_color: "rgb(240, 239, 235)" /* Border color for elements */
     }
   },
   plugins: [

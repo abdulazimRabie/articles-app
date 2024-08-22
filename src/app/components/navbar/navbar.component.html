@@ -1,4 +1,4 @@
-<div class="navbar bg-base-100 flex-col items-start md:flex-row md:items-center">
+<div class="navbar gap-y-1 md:gap-0 flex-col items-start md:flex-row md:items-center bg-offwhite_color">
 
     <div class="navbar-start justify-between w-full md:w-1/2 items-center"> 
         <button (click)="toggleShowMenue()" class="btn flex items-center justify-center px-1 py-2 btn-sm btn-ghost md:hidden overflow-hidden h-fit ">
@@ -39,8 +39,8 @@
       </ul>
     </div>
 
-    <div class="navbar-end hidden md:flex gap-x-2">
-        <div *ngIf="!isUserLoggedIn">
+    <div class="navbar-end hidden md:flex">
+        <div *ngIf="!isUserLoggedIn" class="flex gap-x-3">
             <a class="btn bg-transparent px-6">Login</a>
             <a class="btn bg-primary_color text-offwhite_color hover:text-primary_color hover:bg-accent_color font-bold !imporntant">Become an author</a>
         </div>
