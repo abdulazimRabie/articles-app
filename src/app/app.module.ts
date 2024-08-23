@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LogoComponent } from './components/logo/logo.component';
+import { BecomeAuthorBtnComponent } from './components/become-author-btn/become-author-btn.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +29,15 @@ import { LogoComponent } from './components/logo/logo.component';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
-    LogoComponent
+    LogoComponent,
+    BecomeAuthorBtnComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideClientHydration()
