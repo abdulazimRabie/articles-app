@@ -39,7 +39,7 @@
     <div class="navbar-end hidden md:flex">
         <div *ngIf="!isUserLoggedIn" class="flex gap-x-3">
             <a class="btn bg-transparent px-6" routerLink="/login">Login</a>
-            <a class="btn bg-primary_color text-offwhite_color hover:text-primary_color hover:bg-accent_color font-bold !imporntant">Become an author</a>
+            <app-become-author-btn></app-become-author-btn>
         </div>
         <div class="avatar hidden md:block" *ngIf="isUserLoggedIn">
             <div class="w-8 rounded">
