@@ -14,6 +14,7 @@ import { AuthorsComponent } from './components/authors/authors.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { LogoComponent } from './components/logo/logo.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RegisterComponent } from './components/register/register.component';
     AuthorsComponent,
     FooterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LogoComponent
   ],
   imports: [
     BrowserModule,
