@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -11,20 +12,22 @@ export class RegisterComponent {
   favoriteTopics: string[] = [];
   uploadedImage: File | null = null;
   selectedImage: string;
+  isSubmitting: boolean = false; 
+  articles: string[] = [];
 
-  // Array of avatar images (make sure these paths are correct)
   avatars: string[] = [
     'assets/avatars/avatar_green.png',
     'assets/avatars/avatar_blue.png',
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.registrationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      bio: ['', Validators.required], 
       topicInput: [''],
       image: [null]
     });
@@ -64,22 +67,41 @@ export class RegisterComponent {
 
   onSubmit(): void {
     if (this.registrationForm.valid) {
-      const formData = new FormData();
-      formData.append('email', this.registrationForm.get('email')?.value);
-      formData.append('firstName', this.registrationForm.get('firstName')?.value);
-      formData.append('lastName', this.registrationForm.get('lastName')?.value);
-      formData.append('username', this.registrationForm.get('username')?.value);
-      formData.append('password', this.registrationForm.get('password')?.value);
-      formData.append('favoriteTopics', JSON.stringify(this.favoriteTopics));
+      this.isSubmitting = true; 
 
-      if (this.uploadedImage) {
-        formData.append('image', this.uploadedImage);
-      } else {
-        formData.append('avatar', this.selectedImage); // Send avatar path instead
-      }
+      const requestData = {
+        firstName: this.registrationForm.get('firstName')?.value,
+        lastName: this.registrationForm.get('lastName')?.value,
+        email: this.registrationForm.get('email')?.value,
+        username: this.registrationForm.get('username')?.value,
+        password: this.registrationForm.get('password')?.value,
+        bio: this.registrationForm.get('bio')?.value,
+        topics: this.favoriteTopics,
+        articles: this.articles, 
+        image: '' 
+      };
 
-      console.log('Form Data:', formData);
-      // Handle form submission
+      // Make API call to register the author
+      this.http.post('http://localhost:3000/api/authors/register', requestData).subscribe(
+        (response: any) => {
+          response = response.data.author;
+          localStorage.clear();
+          localStorage.setItem('author', JSON.stringify({
+            firstName: response.firstName,
+            lastName: response.lastName,
+            username: response.username,
+            id: response._id
+          }));
+          localStorage.setItem('token', response.token);
+          console.log('Registration successful', response);
+        },
+        (error) => {
+          console.error('Registration failed', error);
+        },
+        () => {
+          this.isSubmitting = false; // Re-enable button after submission
+        }
+      );
     }
   }
 }

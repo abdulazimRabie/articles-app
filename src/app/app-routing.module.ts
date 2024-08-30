@@ -12,6 +12,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { PublishArticleComponent } from './components/publish-article/publish-article.component';
 import { AppComponent } from './app.component';
+import { authGuardGuard } from './guards/auth-guard.guard';
 
 const routes: Routes = [
   {path: "", component: MainLayoutComponent, children: [
@@ -24,7 +25,7 @@ const routes: Routes = [
       {path: "about", component: ProfileAboutComponent},
       {path: "settings", component: SettingsComponent},
     ]},
-    {path: "publish", component: PublishArticleComponent},
+    {path: "publish", component: PublishArticleComponent, canActivate: [authGuardGuard]},
     { path: 'article/:id', component: ArticleComponent }, // Route with articleId
   ]},
   {path: "login", component: LoginComponent},

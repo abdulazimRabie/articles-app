@@ -1,61 +1,59 @@
 <div class="max-w-4xl mx-auto p-6 my-6 bg-offwhite_color rounded-lg space-y-8">
-  
-    <!-- Author Info and Visibility -->
-    <div class="flex items-center justify-between">
-      <div class="flex items-center space-x-4">
-        <img src="assets/avatars/avatar_blue.png" alt="Author Image" class="w-12 h-12 rounded-full">
-        <span class="text-lg font-semibold">Abdulazim Rabie</span>
-      </div>
-      <div>
-        <select class="select select-bordered w-full max-w-xs">
-          <option selected>Public</option>
-          <option>Private</option>
-        </select>
-      </div>
+  <!-- Author Info and Visibility -->
+  <div class="flex items-center justify-between">
+    <div class="flex items-center space-x-4">
+      <img src="assets/avatars/avatar_blue.png" alt="Author Image" class="w-12 h-12 rounded-full">
+      <span class="text-lg font-semibold">{{author.firstName}}  {{author.lastName}}</span>
     </div>
-  
-    <!-- Article Title -->
-    <div class="form-control">
-      <input type="text" placeholder="Enter the title of your article" 
-             class="input input-ghost text-4xl font-extrabold placeholder-gray-400 w-full">
-    </div>
-  
-    <!-- Article Description -->
-    <div class="form-control">
-      <textarea placeholder="Write a brief description of your article" 
-                class="textarea textarea-bordered w-full"></textarea>
-    </div>
-  
-    <!-- Categories Input -->
-    <div class="form-control">
-      <input type="text" placeholder="Add categories (press Enter to add)" 
-             class="input input-bordered w-full" (keydown.enter)="addCategory($event)">
-    </div>
-  
-    <!-- Categories Badges -->
-    <div class="flex flex-wrap space-x-2 space-y-2">
-      <span *ngFor="let category of categories" class="badge badge-lg badge-primary">
-        {{ category }} 
-        <button type="button" class="ml-2" (click)="removeCategory(category)">✕</button>
-      </span>
-    </div>
-  
-    <!-- Rich Text Editor -->
-    <div class="form-control">
-      <div class="bg-white p-4 border rounded-lg shadow-inner">
-        <editor [init]="init" [(ngModel)]="articleContent"></editor>
-      </div>
-    </div>
-
     <div>
-      <h3>Article Look</h3>
-      <div [innerHTML]="articleContent"></div>
+      <select class="select select-bordered w-full max-w-xs" [(ngModel)]="visibility">
+        <option value="Public">Public</option>
+        <option value="Private">Private</option>
+      </select>
     </div>
-  
-    <!-- Publish Button -->
-    <div class="form-control">
-      <button type="button" class="btn btn-primary w-full" (click)="publishArticle()">Publish Article</button>
-    </div>
-  
   </div>
-  
+
+  <!-- Article Title -->
+  <div class="form-control">
+    <input type="text" placeholder="Enter the title of your article" class="input input-ghost text-4xl font-extrabold placeholder-gray-400 w-full"
+           [(ngModel)]="articleTitle">
+  </div>
+
+  <!-- Article Description -->
+  <div class="form-control">
+    <textarea placeholder="Write a brief description of your article" class="textarea textarea-bordered w-full"
+              [(ngModel)]="articleDescription"></textarea>
+  </div>
+
+  <!-- Categories Input -->
+  <div class="form-control">
+    <input type="text" placeholder="Add categories (press Enter to add)" class="input input-bordered w-full" 
+           (keydown.enter)="addCategory($event)">
+  </div>
+
+  <!-- Categories Badges -->
+  <div class="flex flex-wrap space-x-2 space-y-2">
+    <span *ngFor="let category of categories" class="badge badge-lg badge-primary">
+      {{ category }} 
+      <button type="button" class="ml-2" (click)="removeCategory(category)">✕</button>
+    </span>
+  </div>
+
+  <!-- Rich Text Editor -->
+  <div class="form-control">
+    <div class="bg-white p-4 border rounded-lg shadow-inner">
+      <editor [init]="init" [(ngModel)]="articleContent"></editor>
+    </div>
+  </div>
+
+  <div>
+    <h3>Article Look</h3>
+    <div [innerHTML]="articleContent"></div>
+  </div>
+
+  <!-- Publish Button -->
+  <div class="form-control">
+    <button type="button" class="btn bg-primary_color text-offwhite_color hover:text-primary_color hover:bg-accent_color w-full" 
+            (click)="publishArticle()" [disabled]="!isFormValid()">Publish Article</button>
+  </div>
+</div>

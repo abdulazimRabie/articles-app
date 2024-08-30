@@ -11,8 +11,9 @@
   
     <!-- Author and Topics -->
     <div class="text-center mb-4">
-      <span class="text-gray-700 font-medium">Author:</span>
+      <span class="text-gray-700 font-medium">Author: </span>
       <span class="text-gray-900 font-semibold">{{ article.author.firstName }} {{ article.author.lastName }}</span>
+      <span class="block">{{article.createdTime | date}}</span>
     </div>
   
     <!-- Topics as Badges -->
@@ -24,10 +25,9 @@
         {{ topic }}
       </span>
     </div>
-  
     <!-- Article Content -->
-    <div class="bg-white p-6 shadow-lg rounded-lg max-w-3xl text-justify">
-      <p class="text-gray-700 leading-relaxed">{{ article.content }}</p>
+    <div class="bg-white p-6 border border-primary_color rounded-lg max-w-3xl text-justify">
+      <p class="text-gray-700 leading-relaxed" [innerHTML]="article.content"></p>
     </div>
   </div>
   

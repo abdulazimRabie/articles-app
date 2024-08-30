@@ -1,99 +1,111 @@
 <div class="navbar bg-base-100 justify-center">
-    <app-logo></app-logo>
+  <app-logo></app-logo>
 </div>
 
 <div class="min-h-lvh my-8" id="adjust-height">
-    <div class="md:w-[800px] mx-auto flex flex-col items-center gap-y-3">
-        <h2 class="text-primary_color text-4xl neuton-extrabold">Hey 👋, create an author account</h2>
+  <div class="md:w-[800px] mx-auto flex flex-col items-center gap-y-3">
+      <h2 class="text-primary_color text-4xl neuton-extrabold">Hey 👋, create an author account</h2>
 
-        <div class="w-full my-4">
-          <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="max-w-lg mx-auto p-6 bg-white border-2 border-primary_color rounded-lg space-y-6">
-    
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Email</span>
-              </label>
-              <input formControlName="email" type="email" placeholder="Enter your email" class="input input-bordered w-full">
-            </div>
-          
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">First Name</span>
-              </label>
-              <input formControlName="firstName" type="text" placeholder="Enter your first name" class="input input-bordered w-full">
-            </div>
-          
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Last Name</span>
-              </label>
-              <input formControlName="lastName" type="text" placeholder="Enter your last name" class="input input-bordered w-full">
-            </div>
-          
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Username</span>
-              </label>
-              <input formControlName="username" type="text" placeholder="Choose a username" class="input input-bordered w-full">
-            </div>
-          
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Password</span>
-              </label>
-              <input formControlName="password" type="password" placeholder="Enter a password" class="input input-bordered w-full">
-            </div>
-          
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Profile Image</span>
-              </label>
-              <div class="flex flex-col items-center">
-                <label for="imageUpload" class="cursor-pointer">
-                  <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-300">
-                    <img [src]="selectedImage" alt="Selected Avatar" class="w-full h-full object-cover">
-                  </div>
-                </label>
-                <input id="imageUpload" type="file" accept="image/*" class="hidden" (change)="onImageUpload($event)">
-              </div>
-            </div>
-          
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Choose an Avatar</span>
-              </label>
-              <div class="flex space-x-4">
-                <div *ngFor="let avatar of avatars" class="cursor-pointer">
-                  <img [src]="avatar" alt="Avatar" (click)="onSelectAvatar(avatar)" 
-                       [class.border-blue-500]="selectedImage === avatar" 
-                       class="w-16 h-16 rounded-full border-2 hover:border-blue-500">
+      <div class="w-full my-4">
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="max-w-lg mx-auto p-6 bg-white border-2 border-primary_color rounded-lg space-y-6">
+  
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Email</span>
+            </label>
+            <input formControlName="email" type="email" placeholder="Enter your email" class="input input-bordered w-full">
+          </div>
+        
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">First Name</span>
+            </label>
+            <input formControlName="firstName" type="text" placeholder="Enter your first name" class="input input-bordered w-full">
+          </div>
+        
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Last Name</span>
+            </label>
+            <input formControlName="lastName" type="text" placeholder="Enter your last name" class="input input-bordered w-full">
+          </div>
+        
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Username</span>
+            </label>
+            <input formControlName="username" type="text" placeholder="Choose a username" class="input input-bordered w-full">
+          </div>
+        
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Password</span>
+            </label>
+            <input formControlName="password" type="password" placeholder="Enter a password" class="input input-bordered w-full">
+          </div>
+        
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Bio</span>
+            </label>
+            <textarea formControlName="bio" placeholder="Tell us about yourself" class="textarea textarea-bordered w-full"></textarea>
+          </div>
+        
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Profile Image</span>
+            </label>
+            <div class="flex flex-col items-center">
+              <label for="imageUpload" class="cursor-pointer">
+                <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-300">
+                  <img [src]="selectedImage" alt="Selected Avatar" class="w-full h-full object-cover">
                 </div>
+              </label>
+              <input id="imageUpload" type="file" accept="image/*" class="hidden" (change)="onImageUpload($event)">
+            </div>
+          </div>
+        
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Choose an Avatar</span>
+            </label>
+            <div class="flex space-x-4">
+              <div *ngFor="let avatar of avatars" class="cursor-pointer">
+                <img [src]="avatar" alt="Avatar" (click)="onSelectAvatar(avatar)" 
+                     [class.border-blue-500]="selectedImage === avatar" 
+                     class="w-16 h-16 rounded-full border-2 hover:border-blue-500">
               </div>
             </div>
-          
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Favorite Topics</span>
-              </label>
-              <input formControlName="topicInput" type="text" placeholder="Type a topic and press Enter" (keyup.enter)="addTopic()" class="input input-bordered w-full">
-            </div>
-          
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Selected Topics</span>
-              </label>
-              <div class="flex flex-wrap gap-2 mt-2">
-                <div *ngFor="let topic of favoriteTopics" class="badge border border-primary_color ">
-                  {{ topic }} 
-                  <button type="button" (click)="removeTopic(topic)" class="ml-2 text-primary_color">x</button>
-                </div>
+          </div>
+        
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Favorite Topics</span>
+            </label>
+            <input formControlName="topicInput" type="text" placeholder="Type a topic and press Enter" (keyup.enter)="addTopic()" class="input input-bordered w-full">
+          </div>
+        
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Selected Topics</span>
+            </label>
+            <div class="flex flex-wrap gap-2 mt-2">
+              <div *ngFor="let topic of favoriteTopics" class="badge border border-primary_color ">
+                {{ topic }} 
+                <button type="button" (click)="removeTopic(topic)" class="ml-2 text-primary_color">x</button>
               </div>
             </div>
-          
-            <div class="form-control">
-              <button type="submit" class="btn bg-primary_color text-offwhite_color hover:bg-accent_color hover:text-primary_color w-full">Become an Author</button>
-            </div>
-          </form>
-        </div>
-    </div>
+          </div>
+        
+          <div class="form-control">
+            <button 
+              type="submit" 
+              class="btn bg-primary_color text-offwhite_color hover:bg-accent_color hover:text-primary_color w-full" 
+              [disabled]="registrationForm.invalid || isSubmitting">
+              Become an Author
+            </button>
+          </div>
+        </form>
+      </div>
+  </div>
 </div>
