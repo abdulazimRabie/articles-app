@@ -13,8 +13,10 @@
       <a class="tab" routerLink="about" routerLinkActive="active-tab">About</a>
       <a class="tab" routerLink="settings" routerLinkActive="active-tab">Settings</a>
     </div> -->
-
-    <button class="btn btn-error" *ngIf="isItMe()" (click)="logout()">Logout</button>
+    <div class="flex items-center gap-x-1 mb-2">
+      <a class="btn btn-error btn-sm" *ngIf="isItMe()" (click)="logout()">Logout</a>
+      <a class="btn btn-sm bg-primary_color border text-offwhite_color hover:bg-accent_color hover:text-primary_color flex justify-center items-center" *ngIf="isItMe()" routerLink="/publish">Publish</a>
+    </div>
   
     <!-- Articles Section -->
     <div>

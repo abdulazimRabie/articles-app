@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-publish-article',
   templateUrl: './publish-article.component.html',
@@ -27,7 +27,7 @@ export class PublishArticleComponent implements OnInit {
     token: ""
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router : Router) {
     const authorString = localStorage.getItem("author");
     if (authorString) {
       this.author = JSON.parse(authorString);
@@ -72,8 +72,10 @@ export class PublishArticleComponent implements OnInit {
 
     this.http.post('http://localhost:3000/api/articles', articleData, { headers })
       .subscribe(
-        (response) => {
+        (response: any) => {
           console.log('Article published:', response);
+
+          this.router.navigate(['/article', response.data.article._id])
           // Handle success (e.g., show success message, navigate, etc.)
         },
         (error) => {

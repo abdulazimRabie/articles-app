@@ -14,8 +14,8 @@
 
         <app-logo></app-logo>
 
-        <a class="btn btn-sm  md:hidden bg-primary_color text-offwhite_color hover:text-primary_color hover:bg-accent_color font-bold !imporntant" *ngIf="!isUserLoggedIn" routerLink="/register">Become an author</a>
-        <div class="avatar md:hidden" *ngIf="isUserLoggedIn">
+        <a class="btn btn-sm md:hidden bg-primary_color text-offwhite_color hover:text-primary_color hover:bg-accent_color font-bold !imporntant" *ngIf="!isUserLoggedIn" routerLink="/register">Become an author</a>
+        <div class="avatar md:hidden cursor-pointer" *ngIf="isUserLoggedIn">
             <div class="w-8 rounded">
               <img
                 src="assets/avatars/avatar_blue.png"
@@ -41,7 +41,7 @@
             <a class="btn bg-primary_color text-offwhite_color hover:text-primary_color hover:bg-accent_color font-bold !imporntant" routerLink="/register">Become an author</a>
         </div>
         <div class="avatar hidden md:block" *ngIf="isUserLoggedIn">
-            <div class="w-8 rounded">
+            <div class="w-8 rounded cursor-pointer">
               <img
                 src="assets/avatars/avatar_blue.png"
                 alt="Tailwind-CSS-Avatar-component" (click)="openProfile()"/>
