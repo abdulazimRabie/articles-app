@@ -1,4 +1,15 @@
 <app-hero *ngIf="!isUserLoggedIn"></app-hero>
+<div class="hero bg-offwhite_color min-h-screen" *ngIf="isUserLoggedIn">
+    <div class="hero-content text-center -mt-16">
+      <div class="max-w-lg">
+        <h1 class="text-6xl font-bold neuton-bold">Share Your Wisdom, Discover New Perspectives</h1>
+        <p class="py-6 text-lg">
+            Welcome ! 👋. Have any insights today
+        </p>
+        <a class="btn btn-block bg-primary_color text-offwhite_color hover:bg-accent_color hover:text-primary_color" routerLink="/publish">Sahre it now</a>
+      </div>
+    </div>
+</div>
 <app-articles></app-articles>
 <app-authors></app-authors>
 <app-footer></app-footer>

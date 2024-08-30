@@ -8,16 +8,18 @@
     </div>
   
     <!-- Tabs Section -->
-    <div role="tablist" class="tabs-boxed bg-[#fff] w-fit my-5">
+    <!-- <div role="tablist" class="tabs-boxed bg-[#fff] w-fit my-5">
       <a class="tab active-tab" routerLink="articles" routerLinkActive="active-tab">Articles</a>
       <a class="tab" routerLink="about" routerLinkActive="active-tab">About</a>
       <a class="tab" routerLink="settings" routerLinkActive="active-tab">Settings</a>
-    </div>
+    </div> -->
+
+    <button class="btn btn-error" *ngIf="isItMe()" (click)="logout()">Logout</button>
   
     <!-- Articles Section -->
     <div>
       <div
-        class="card bg-base-100 w-full border-2 border-transparent hover:border-primary_color cursor-pointer relative overflow-hidden"
+        class="card bg-base-100 w-full border-2 border-transparent hover:border-primary_color cursor-pointer relative overflow-hidden mb-3"
         *ngFor="let article of articles"
         (click)="viewArticle(article._id)"
       >

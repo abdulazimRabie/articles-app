@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IAuthor } from '../../models/iauthor';
 import { IArticle } from '../../models/iarticle'; // Define this model for articles
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { AuthServService } from '../../services/auth-serv.service';
 
 
 @Component({
@@ -13,11 +14,20 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 })
 export class ProfileComponent implements OnInit {
   faArrow = faArrowRight;
+  isUserLoggedIn: boolean = false;
   author: IAuthor | null = null;
   articles: IArticle[] = []; // To hold the articles
   authorId: string | null = null;
+  showLogoutBtn = false;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private http: HttpClient, 
+    private route: ActivatedRoute, 
+    private router: Router,
+    private authServ : AuthServService
+  ) {
+    this.isUserLoggedIn = authServ.isUserLogged;
+  }
 
   ngOnInit(): void {
     // Extract authorId from the route
@@ -61,5 +71,19 @@ export class ProfileComponent implements OnInit {
 
   viewArticle(articleId: string): void {
     this.router.navigate(['/article', articleId]); // Adjust the route based on your routing setup
+  }
+
+  isItMe() {
+    const authorSting = localStorage.getItem("author");
+    if (authorSting) {
+      const authorJson = JSON.parse(authorSting);
+      return authorJson.id == this.authorId;
+    }
+    return false;
+  }
+
+  logout() {
+    localStorage.clear();
+    location.reload();
   }
 }
