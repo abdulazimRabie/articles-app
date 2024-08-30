@@ -1,52 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { IAuthor } from '../../models/iauthor';
 
 @Component({
   selector: 'app-authors',
   templateUrl: './authors.component.html',
-  styleUrl: './authors.component.css'
+  styleUrls: ['./authors.component.css']
 })
-export class AuthorsComponent {
-  authors : IAuthor[] = [];
+export class AuthorsComponent implements OnInit {
+  authors: IAuthor[] = [];
 
-  constructor() {
-    this.authors= [
-      {
-        id: 1,
-        name: "Jane Doe",
-        email: "jane.doe@example.com",
-        categories: ["Technology", "AI", "Programming"],
-        followers: 1500,
-      },
-      {
-        id: 2,
-        name: "John Smith",
-        email: "john.smith@example.com",
-        categories: ["Lifestyle", "Minimalism", "Health"],
-        followers: 2300,
-      },
-      {
-        id: 3,
-        name: "Alice Johnson",
-        email: "alice.johnson@example.com",
-        categories: ["Finance", "Investing", "Cryptocurrency"],
-        followers: 3200,
-      },
-      {
-        id: 4,
-        name: "David Lee",
-        email: "david.lee@example.com",
-        categories: ["Art", "Design", "Photography"],
-        followers: 1800,
-      },
-      {
-        id: 5,
-        name: "Emily Clark",
-        email: "emily.clark@example.com",
-        categories: ["Education", "Teaching", "E-learning"],
-        followers: 2100,
-      }
-    ];
-    
+  constructor(private http: HttpClient, private router: Router) {}
+
+  ngOnInit(): void {
+    this.fetchAuthors();
+  }
+
+  // Fetch authors from the API
+  fetchAuthors(): void {
+    this.http.get<any>('http://localhost:3000/api/authors?limit=4')
+      .subscribe(response => {
+        if (response.status === 'success') {
+          this.authors = response.data.authors;
+        }
+      }, error => {
+        console.error('Error fetching authors:', error);
+      });
+  }
+
+  // Function to navigate to the author's profile
+  goToProfile(authorId: string): void {
+    this.router.navigate(['profile', authorId]);
   }
 }

@@ -1,0 +1,61 @@
+<div class="max-w-4xl mx-auto p-6 my-6 bg-offwhite_color rounded-lg space-y-8">
+  
+    <!-- Author Info and Visibility -->
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <img src="assets/avatars/avatar_blue.png" alt="Author Image" class="w-12 h-12 rounded-full">
+        <span class="text-lg font-semibold">Abdulazim Rabie</span>
+      </div>
+      <div>
+        <select class="select select-bordered w-full max-w-xs">
+          <option selected>Public</option>
+          <option>Private</option>
+        </select>
+      </div>
+    </div>
+  
+    <!-- Article Title -->
+    <div class="form-control">
+      <input type="text" placeholder="Enter the title of your article" 
+             class="input input-ghost text-4xl font-extrabold placeholder-gray-400 w-full">
+    </div>
+  
+    <!-- Article Description -->
+    <div class="form-control">
+      <textarea placeholder="Write a brief description of your article" 
+                class="textarea textarea-bordered w-full"></textarea>
+    </div>
+  
+    <!-- Categories Input -->
+    <div class="form-control">
+      <input type="text" placeholder="Add categories (press Enter to add)" 
+             class="input input-bordered w-full" (keydown.enter)="addCategory($event)">
+    </div>
+  
+    <!-- Categories Badges -->
+    <div class="flex flex-wrap space-x-2 space-y-2">
+      <span *ngFor="let category of categories" class="badge badge-lg badge-primary">
+        {{ category }} 
+        <button type="button" class="ml-2" (click)="removeCategory(category)">✕</button>
+      </span>
+    </div>
+  
+    <!-- Rich Text Editor -->
+    <div class="form-control">
+      <div class="bg-white p-4 border rounded-lg shadow-inner">
+        <editor [init]="init" [(ngModel)]="articleContent"></editor>
+      </div>
+    </div>
+
+    <div>
+      <h3>Article Look</h3>
+      <div [innerHTML]="articleContent"></div>
+    </div>
+  
+    <!-- Publish Button -->
+    <div class="form-control">
+      <button type="button" class="btn btn-primary w-full" (click)="publishArticle()">Publish Article</button>
+    </div>
+  
+  </div>
+  

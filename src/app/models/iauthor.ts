@@ -1,7 +1,12 @@
 export interface IAuthor {
-    name: string;
-    id: number;
+    _id: string;
+    firstName: string;
+    lastName: string;
     email: string;
-    categories : string[];
-    followers: number;
+    username: string;
+    password: string;
+    topics: string[];
+    bio: string;
+    articles: string[];
+    image: string;
 }

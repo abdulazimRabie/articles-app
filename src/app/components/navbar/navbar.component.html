@@ -1,5 +1,4 @@
 <div class="navbar gap-y-1 md:gap-0 flex-col items-start md:flex-row md:items-center bg-offwhite_color">
-
     <div class="navbar-start justify-between w-full md:w-1/2 items-center"> 
         <button (click)="toggleShowMenue()" class="btn flex items-center justify-center px-1 py-2 btn-sm btn-ghost md:hidden overflow-hidden h-fit ">
             <!-- hamburger icon -->
@@ -28,10 +27,10 @@
     <div class="navbar-center lg:flex hidden md:block w-full border-2 rounded-md md:border-none md:w-fit" [ngClass]="{'hidden': showMenue}">
       <ul class="menu md:menu-horizontal px-1 w-full">
         <li>
-            <a class="text-lg border-2 border-transparent hover:border-secondary_color hover:bg-transparent font-bold">Authors</a>
+            <a class="text-lg border-2 border-transparent hover:border-secondary_color hover:bg-transparent font-bold" routerLink="/authors">Authors</a>
         </li>
         <li>
-            <a class="text-lg border-2 border-transparent hover:border-secondary_color hover:bg-transparent font-bold">Articles</a>
+            <a class="text-lg border-2 border-transparent hover:border-secondary_color hover:bg-transparent font-bold" routerLink="/articles">Articles</a>
         </li>
       </ul>
     </div>
@@ -39,7 +38,7 @@
     <div class="navbar-end hidden md:flex">
         <div *ngIf="!isUserLoggedIn" class="flex gap-x-3">
             <a class="btn bg-transparent px-6" routerLink="/login">Login</a>
-            <a class="btn bg-primary_color text-offwhite_color hover:text-primary_color hover:bg-accent_color font-bold !imporntant">Become an author</a>
+            <a class="btn bg-primary_color text-offwhite_color hover:text-primary_color hover:bg-accent_color font-bold !imporntant" routerLink="/register">Become an author</a>
         </div>
         <div class="avatar hidden md:block" *ngIf="isUserLoggedIn">
             <div class="w-8 rounded">

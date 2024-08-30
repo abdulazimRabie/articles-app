@@ -1,23 +1,30 @@
 <div class="py-5 bg-offwhite_color border-t-4 border-primary_color px-3">
     <div class="flex justify-center">
-        <h3 class="text-5xl text-center font-bold neuton-bold my-7">Our Famous Authors</h3>
+      <h3 class="text-5xl text-center font-bold neuton-bold my-7">Our Famous Authors</h3>
     </div>
     <div class="grid place-content-center">
-        <div class="flex flex-wrap gap-3 justify-center">
-            <div *ngFor="let author of authors" class="bg-[#fff] shadow-md rounded-lg p-6 mb-4 border-2 hover:border-primary_color w-full md:w-fit">
-                <div class="flex justify-between items-center mb-2">
-                <h2 class="text-xl font-semibold text-gray-800">{{ author.name }}</h2>
-                <span class="text-sm text-gray-600">{{ author.followers }} Followers</span>
-                </div>
-                <div class="text-gray-600 mb-4">
-                <span class="font-medium">Email: </span>{{ author.email }}
-                </div>
-                <div class="flex flex-wrap gap-1">
-                    <span *ngFor="let category of author.categories" class="text-sm rounded-full px-3 py-1">
-                        <a class="badge border border-primary_color text-primary_color hover:bg-accent_color badge-outline">{{ category }}</a>
-                    </span>
-                </div>
-            </div>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <div *ngFor="let author of authors" class="bg-white shadow-md rounded-lg p-6 mb-4 border-2 hover:border-primary_color w-full md:w-fit">
+          <div class="flex justify-between items-center mb-2">
+            <h2 class="text-xl font-semibold text-gray-800">{{ author.firstName }} {{ author.lastName }}</h2>
+            <!-- Removed followers -->
+          </div>
+          <div class="text-gray-600 mb-4">
+            <span class="font-medium">Email: </span>{{ author.email }}
+          </div>
+          <!-- Added bio -->
+          <div class="text-gray-600 mb-4">
+            <span class="font-medium">Bio: </span>{{ author.bio }}
+          </div>
+          <div class="flex flex-wrap gap-1">
+            <span *ngFor="let topic of author.topics" class="text-sm rounded-full px-3 py-1">
+              <a class="badge border border-primary_color text-primary_color hover:bg-accent_color badge-outline">{{ topic }}</a>
+            </span>
+          </div>
+          <!-- Button to navigate to profile -->
+          <button (click)="goToProfile(author._id)" class="mt-4 bg-primary_color text-offwhite_color py-2 px-4 rounded hover:bg-accent_color hover:text-primary_color">View Profile</button>
         </div>
+      </div>
     </div>
 </div>
+  

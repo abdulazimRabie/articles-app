@@ -1,23 +1,46 @@
-
 <div class="py-5 bg-offwhite_color border-t-4 border-primary_color px-3">
-    <div class="flex justify-center">
-        <h3 class="text-5xl text-center font-bold neuton-bold my-7">Latest Articles From Authors</h3>
-    </div>
-    <div class="grid gap-y-3 justify-center">
-        <div class="card bg-base-100 w-full border-2 border-transparent hover:border-primary_color cursor-pointer relative overflow-hidden" *ngFor="let article of articles">
-            <div class="card-body py-2 px-3">
-              <h2 class="card-title">{{article.title}}</h2>
-              <p>{{article.description}}</p>
-              <div>
-                  <span>author : <span class="italic font-semibold capitalize">{{article.author}}</span></span>
-              </div>
-              <div>
-                <span class="flex items-center">🤝 likes : {{article.likes}}</span>
-              </div>
-              <div class="flex justify-center items-center absolute bottom-0 right-0 w-10 h-10 bg-primary_color text-offwhite_color hover:bg-accent_color hover:text-primary_color rounded-tl-md">
-                <fa-icon [icon]="faArrow" class="text-lg"></fa-icon>
-              </div>
-            </div>
+  <div class="flex justify-center">
+    <h3 class="text-5xl text-center font-bold neuton-bold my-7">
+      Latest Articles From Authors
+    </h3>
+  </div>
+  <div class="grid gap-y-3 justify-center">
+    <div
+      class="card bg-base-100 w-full border-2 border-transparent hover:border-primary_color cursor-pointer relative overflow-hidden"
+      *ngFor="let article of articles"
+      (click)="viewArticle(article._id)"
+      >
+      <div class="card-body py-2 px-3">
+        <h2 class="card-title">{{ article.title }}</h2>
+        <p>{{ article.description }}</p>
+        <div>
+          <span>
+            Author: 
+            <span class="italic font-semibold capitalize">
+              {{ article.author.firstName }} {{ article.author.lastName }}
+            </span>
+          </span>
         </div>
+        <div>
+          <span>{{article.createdTime | date}}</span>
+        </div>
+        <div class="my-2">
+          <span class="font-semibold">Topics:</span>
+          <div class="flex flex-wrap gap-2 mt-1">
+            <span
+              *ngFor="let topic of article.topics"
+              class="bg-gray-200 px-2 py-1 rounded-full text-sm"
+            >
+              {{ topic }}
+            </span>
+          </div>
+        </div>
+        <div
+          class="flex justify-center items-center absolute bottom-0 right-0 w-10 h-10 bg-primary_color text-offwhite_color hover:bg-accent_color hover:text-primary_color rounded-tl-md"
+        >
+          <fa-icon [icon]="faArrow" class="text-lg"></fa-icon>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

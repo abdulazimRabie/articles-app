@@ -1,0 +1,33 @@
+<div class="flex flex-col items-center justify-center min-h-screen p-6 bg-gray-50" *ngIf="article">
+    <!-- Article Title -->
+    <h2 class="text-4xl font-bold text-center my-4 text-gray-800">
+      {{ article.title }}
+    </h2>
+  
+    <!-- Article Description -->
+    <p class="text-lg text-center text-gray-600 max-w-2xl mb-6">
+      {{ article.description }}
+    </p>
+  
+    <!-- Author and Topics -->
+    <div class="text-center mb-4">
+      <span class="text-gray-700 font-medium">Author:</span>
+      <span class="text-gray-900 font-semibold">{{ article.author.firstName }} {{ article.author.lastName }}</span>
+    </div>
+  
+    <!-- Topics as Badges -->
+    <div class="flex flex-wrap justify-center gap-2 mb-6">
+      <span
+        *ngFor="let topic of article.topics"
+        class="badge badge-neutral bg-gray-200 text-gray-800 px-3 py-1 rounded-full"
+      >
+        {{ topic }}
+      </span>
+    </div>
+  
+    <!-- Article Content -->
+    <div class="bg-white p-6 shadow-lg rounded-lg max-w-3xl text-justify">
+      <p class="text-gray-700 leading-relaxed">{{ article.content }}</p>
+    </div>
+  </div>
+  
